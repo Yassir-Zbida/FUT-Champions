@@ -1,0 +1,7 @@
+.card {
+    background-image: url('./images/cards/bronze-totw-24.webp');
+    background-size: contain;
+    background-repeat: no-repeat;
+    height: 150px;
+    width: 100px;
+}
