@@ -68,13 +68,24 @@ function generatePlayerCard(player) {
   }
   
   // players search  function 
-  
+  const  searchInput = document.getElementById('searchInput')
+  // Add search functionality
+  searchInput.addEventListener('input', playerSearch);
+  function playerSearch() {
+    const filteredPlayers = [];
+    const keyword = searchInput.value.toUpperCase();
+    for (let i = 0; i < storedPlayers.length; i++) {
+        const playerName = storedPlayers[i].name.toUpperCase();
+        if (playerName.includes(keyword)) {
+            filteredPlayers.push(storedPlayers[i]);
+        }
+    }
+    showPlayers(filteredPlayers); 
+}
+
+
   // Fetch players from localStorage
-  const storedPlayers = JSON.parse(localStorage.getItem('players'));
-  if (storedPlayers && Array.isArray(storedPlayers)) {
-    showPlayers(storedPlayers);
-  } else {
-    console.error("No players found in localStorage.");
-  }
-  
+ storedPlayers = JSON.parse(localStorage.getItem('players'));
+ showPlayers(storedPlayers);
+ 
 
