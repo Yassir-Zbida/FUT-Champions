@@ -18,7 +18,7 @@ document.addEventListener('click', (event) => {
 });
 
 
-fetch('http://fut.codia-dev.com/data.json')
+fetch('https://fut.codia-dev.com/data.json')
 .then((response) => response.json())
 .then((data)=> localStorage.setItem('players', JSON.stringify(data.players)))
 

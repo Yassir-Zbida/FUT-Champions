@@ -87,7 +87,7 @@ function generatePlayerCard(player) {
   // Filter function for players based on position
   const filterPlayer = document.getElementById('positionFilter');
   filterPlayer.addEventListener('change', filterPlayers);
-  
+
   function filterPlayers() {
     const filterPosition = filterPlayer.value;
     const filteredPlayers = filterPosition === 'all' 
@@ -95,6 +95,19 @@ function generatePlayerCard(player) {
       : storedPlayers.filter(player => player.position === filterPosition);
     showPlayers(filteredPlayers);
   }
+
+  // add Player to Json File 
+  const closeModal = document.getElementById('closeModal');
+  const openModal = document.getElementById('AddPlayer');
+  const AddPlayerModal = document.getElementById('AddPlayerModal');
+  closeModal.addEventListener('click', () => {
+    AddPlayerModal.classList.add('hidden');
+  })
+  openModal.addEventListener('click', () => {
+    AddPlayerModal.classList.remove('hidden');
+  })
+
+
   
   // Fetch players from localStorage
   const storedPlayers = JSON.parse(localStorage.getItem('players')) || [];
