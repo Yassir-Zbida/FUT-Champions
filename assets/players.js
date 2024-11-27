@@ -67,25 +67,36 @@ function generatePlayerCard(player) {
     });
   }
   
-  // players search  function 
-  const  searchInput = document.getElementById('searchInput')
-  // Add search functionality
+  // Search function for players
+  const searchInput = document.getElementById('searchInput');
   searchInput.addEventListener('input', playerSearch);
+  
   function playerSearch() {
     const filteredPlayers = [];
     const keyword = searchInput.value.toUpperCase();
+    
     for (let i = 0; i < storedPlayers.length; i++) {
-        const playerName = storedPlayers[i].name.toUpperCase();
-        if (playerName.includes(keyword)) {
-            filteredPlayers.push(storedPlayers[i]);
-        }
+      const playerName = storedPlayers[i].name.toUpperCase();
+      if (playerName.includes(keyword)) {
+        filteredPlayers.push(storedPlayers[i]);
+      }
     }
     showPlayers(filteredPlayers); 
-}
-
-
+  }
+  
+  // Filter function for players based on position
+  const filterPlayer = document.getElementById('positionFilter');
+  filterPlayer.addEventListener('change', filterPlayers);
+  
+  function filterPlayers() {
+    const filterPosition = filterPlayer.value;
+    const filteredPlayers = filterPosition === 'all' 
+      ? storedPlayers 
+      : storedPlayers.filter(player => player.position === filterPosition);
+    showPlayers(filteredPlayers);
+  }
+  
   // Fetch players from localStorage
- storedPlayers = JSON.parse(localStorage.getItem('players'));
- showPlayers(storedPlayers);
- 
-
+  const storedPlayers = JSON.parse(localStorage.getItem('players')) || [];
+  showPlayers(storedPlayers); 
+  
