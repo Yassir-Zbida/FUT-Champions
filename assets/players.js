@@ -1,24 +1,24 @@
 // Function to generate player HTML
 function generatePlayerCard(player) {
     return `
-      <div class="w-full flex h-[55%] ">
+      <div class="w-full flex h-[55%] pb-6">
         <div class="w-[60%] h-full flex justify-end items-end ">
           <div class="flex flex-col items-center justify-center mr-1">
             <p>${player.rating}</p>
             <p>${player.position}</p>
-            <img class="h-6" src="${player.logo}" alt="">
+            <img class="h-6 w-6" src="${player.logo}" >
           </div>
         </div>
         <div class="h-full w-full flex justify-center items-end">
           <div>
-            <img class="h-24 w-16 relative right-4" src="${player.photo}" alt="">
+            <img class="h-24 w-18 relative right-4" src="${player.photo}" alt="">
           </div>
         </div>
       </div>
       <div class="w-full h-[45%] flex flex-col">
         <div class="w-full h-[30%] flex justify-center gap-2 items-center">
           <p>${player.name}</p>
-          <img class="h-4" src="${player.flag}" alt="">
+          <img class="h-4" src="${player.flag}" >
         </div>
         <div class="w-full h-full flex gap-8">
           <div class="h-full w-[50%] flex flex-col items-end text-xs">
@@ -67,6 +67,8 @@ function generatePlayerCard(player) {
     });
   }
   
+  // players search  function 
+  
   // Fetch players from localStorage
   const storedPlayers = JSON.parse(localStorage.getItem('players'));
   if (storedPlayers && Array.isArray(storedPlayers)) {
@@ -75,3 +77,4 @@ function generatePlayerCard(player) {
     console.error("No players found in localStorage.");
   }
   
+

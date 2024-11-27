@@ -20,18 +20,12 @@
             <h1 class="text-xl font-bold hidden sm:block">FUT Team Builder</h1>
         </div>
 
-        <nav class="hidden md:flex space-x-6 font-semibold text-base">
+        <nav class="hidden md:flex space-x-6 font-semibold text-base mr-5">
             <a href="../index.html" class="hover:text-[#991314]">Lineup Builder</a>
             <a href="./pages/players.html" class="hover:text-[#991314]">Players</a>
             <a href="./squads.html" class="hover:text-[#991314]">Squads</a>
             <a href="./market.html" class="hover:text-[#991314]">Market</a>
         </nav>
-
-        <div class="flex items-center space-x-4 hidden sm:block">
-            <button
-                class="bg-[#991314] px-4 py-2 rounded-lg hover:bg-[#fcf7db] hover:text-[#991314] duration-75 text-[#fcf7db] font-medium">Add
-                Player</button>
-        </div>
 
         <!-- Mobile Menu Button -->
         <button id="menuToggle" class="md:hidden text-2xl">
@@ -52,22 +46,46 @@
             <a href="./index.html" class="block px-4 py-2 hover:bg-gray-700">Lineup Builder</a>
             <a href="./pages/players.html" class="block px-4 py-2 hover:bg-gray-700">Players</a>
             <a href="./pages/squads.html" class="block px-4 py-2 hover:bg-gray-700">Squads</a>
-            <a href="./pages/market.html" class="block px-4 py-2 hover:bg-gray-700">Market</a>
-            <button
-                class="bg-[#991314] px-4 py-2 rounded-lg hover:bg-[#fcf7db] hover:text-[#991314] duration-75 text-[#fcf7db] font-medium w-[90%] mx-3">Add
-                Player</button>
+            <a href="./pages/market.html" class="block px-4 py-2 hover:bg-gray-700">Market</a> 
         </nav>
     </div>
 
     <!-- Hero Main Section -->
-    <div class="min-h-screen h-full w-full bg-black pt-16 flex justify-center">
+    <div class="min-h-screen h-full w-full bg-black pt-16 flex justify-between flex-col ">
+        <!-- Options Header Section  -->
+        <div class="flex justify-between items-center px-6 mb-8 mx-5">
+            <div class="flex items-center gap-4">
+                <button class="bg-[#991314] px-4 py-2 rounded-lg hover:bg-[#fcf7db] hover:text-[#991314] duration-75 text-[#fcf7db] font-medium">Add New Player</button>  
+                <!-- Search Input -->
+                <div class="relative w-64">
+                    <input 
+                        type="text" 
+                        placeholder="Search for a Player" 
+                        class="border border-gray-500 rounded-lg pl-4 pr-10 py-2 w-full placeholder-gray-500 bg-transparent text-white focus:outline-none focus:ring-2 focus:ring-[#991314]" 
+                        id="searchInput">
+                    <i class="ri-search-2-line absolute top-1/2 right-3 transform -translate-y-1/2 text-white"></i>
+                </div>
+            </div>
+        <!-- Select Option  -->
+        <div class="relative w-48">
+            <select 
+                id="positionFilter" 
+                class="border border-gray-500 rounded-lg pl-4 pr-10 py-2 w-full bg-black text-white focus:outline-none focus:ring-2 focus:ring-[#991314] appearance-none">
+                <option value="">All Positions</option>
+                <option value="Forward">Forward</option>
+                <option value="Midfielder">Midfielder</option>
+                <option value="Defender">Defender</option>
+                <option value="Goalkeeper">Goalkeeper</option>
+            </select>
+        </div>
+        
+        </div>
+        
         <!-- Grid Container -->
         <div class="min-h-screen grid h-4/5 grid-cols-6 gap-4 mb-32 bg-contain ml-6 bg-no-repeat" id="playersGrid">
         </div>
     </div>
 
 
-
 </body>
-
 </html>
