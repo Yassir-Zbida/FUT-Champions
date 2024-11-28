@@ -92,60 +92,177 @@
     </div>
  
 <!-- Add Modal Player -->
-<div class="fixed inset-0 bg-gray-800 bg-opacity-50 flex items-center justify-center hidden" id="AddPlayerModal">
-
-    <div class="bg-gray-800 text-white p-6 rounded-lg w-[900px] max-w-md">
-
+<div id="AddPlayerModal" class="fixed inset-0 bg-gray-800 bg-opacity-50 flex items-center justify-center hidden z-50">
+    <div class="bg-[#410000] text-[#fcf7db] p-8 rounded-lg max-w-4xl w-full">
         <div class="flex justify-between items-center mb-4">
-            <h2 class="text-xl font-bold">Add New Player</h2>
-            <i class="ri-close-circle-line text-2xl" id="closeModal"></i>
+            <h2 id="modalTitle" class="text-2xl font-bold">Add New Player</h2>
+            <i class="ri-close-circle-line text-3xl cursor-pointer" id="closeModal"></i>
         </div>
 
-        <form id="player-form" class="space-y-4">
-            <div class="space-y-2">
-                <label for="position" class="block">Position</label>
-                <select id="position" class="w-full p-2 bg-gray-700 border border-gray-600 rounded">
-                    <option value="">Select Position</option>
-                    <option value="ST">Striker</option>
-                    <option value="RW">Right Wing</option>
-                    <option value="LW">Left Wing</option>
-                    <option value="CM">Center Midfielder</option>
-                    <option value="CB">Center Back</option>
-                    <option value="GK">Goalkeeper</option>
-                    <option value="CDM">Defensive Midfielder</option>
-                    <option value="RB">Right Back</option>
-                    <option value="LB">Left Back</option>
-                </select>
-            </div>
-            <div class="space-y-2">
-                <label for="name" class="block">Name</label>
-                <input id="name" type="text" class="w-full p-2 bg-gray-700 border border-gray-600 rounded" placeholder="Enter player name" required />
-            </div>
-            <div class="space-y-2">
-                <label for="photo" class="block">Photo URL</label>
-                <input id="photo" type="url" class="w-full p-2 bg-gray-700 border border-gray-600 rounded" placeholder="Enter player photo URL" required />
-            </div>
-            <div class="space-y-2">
-                <label for="nationality" class="block">Nationality</label>
-                <input id="nationality" type="text" class="w-full p-2 bg-gray-700 border border-gray-600 rounded" placeholder="Enter player nationality" required />
-            </div>
-            <div class="space-y-2">
-                <label for="club" class="block">Club</label>
-                <input id="club" type="text" class="w-full p-2 bg-gray-700 border border-gray-600 rounded" placeholder="Enter player club" required />
-            </div>
-            <div class="space-y-2">
-                <label for="rating" class="block">Rating</label>
-                <input id="rating" type="number" class="w-full p-2 bg-gray-700 border border-gray-600 rounded" placeholder="Enter player rating" required />
-            </div>
-            
-            <div class="flex justify-center mt-4">
-                <button type="submit" class="bg-blue-500 text-white py-2 px-4 rounded">Add Player</button>
-            </div>
-        </form>
+        <div id="modalContent" class="grid grid-cols-1 md:grid-cols-2 gap-6 w-full">
+            <!-- Form for Player Info -->
+            <form id="playerForm" class="grid grid-cols-1 gap-4 w-full">
+                <!-- Position -->
+                <div class="space-y-2 col-span-2">
+                    <label for="position" class="block text-sm">Position</label>
+                    <select id="position" class="w-full p-2 bg-black border border-gray-600 rounded">
+                        <option value="GK">Goalkeeper</option>
+                        <option value="CF">Striker</option>
+                        <option value="RWF">Right Wing</option>
+                        <option value="LWF">Left Wing</option>
+                        <option value="CMF">Center Midfielder</option>
+                        <option value="CB">Center Back</option>
+                        <option value="CDM">Defensive Midfielder</option>
+                        <option value="RB">Right Back</option>
+                        <option value="LB">Left Back</option>
+                    </select>
+                </div>
+
+                <div class="space-y-2 col-span-2">
+                    <label for="name" class="block text-sm">Name</label>
+                    <input id="name" type="text" class="w-full p-2 bg-black border border-gray-600 rounded" placeholder="Enter player name" required>
+                </div>
+
+                <div class="space-y-2 col-span-2">
+                    <label for="photo" class="block text-sm">Photo URL</label>
+                    <input id="photo" type="url" class="w-full p-2 bg-black border border-gray-600 rounded" placeholder="Enter player photo URL" required>
+                </div>
+
+                <div class="space-y-2 col-span-1">
+                    <label for="rating" class="block text-sm">Rating</label>
+                    <input id="rating" type="number" class="w-full p-2 bg-black border border-gray-600 rounded" placeholder="Enter player rating" required>
+                </div>
+
+                <div class="space-y-2 col-span-1">
+                    <label for="club" class="block text-sm">Club</label>
+                    <input id="club" type="text" class="w-full p-2 bg-black border border-gray-600 rounded" placeholder="Enter player club" required>
+                </div>
+
+                <div class="space-y-2 col-span-2">
+                    <label for="nationality" class="block text-sm">Nationality</label>
+                    <input id="nationality" type="text" class="w-full p-2 bg-black border border-gray-600 rounded" placeholder="Enter player nationality" required>
+                </div>
+
+                <!-- All Postions Stats -->
+                <div class="col-span-2 grid grid-cols-6 gap-2" id="stats">
+                    <div class="flex flex-col justify-start">
+                        <label for="pac" class="text-sm">PAC</label>
+                        <input
+                            id="pac"
+                            type="number"
+                            class="w-full bg-black text-center text-[#fcf7db] rounded px-2 py-1 border border-gray-600"
+                            placeholder="93"
+                        />
+                    </div>
+                    <div class="flex flex-col justify-start">
+                        <label for="sho" class="text-sm">SHO</label>
+                        <input
+                            id="sho"
+                            type="number"
+                            class="w-full bg-black text-center text-[#fcf7db] rounded px-2 py-1 border border-gray-600"
+                            placeholder="87"
+                        />
+                    </div>
+                    <div class="flex flex-col justify-start">
+                        <label for="pas" class="text-sm">PAS</label>
+                        <input
+                            id="pas"
+                            type="number"
+                            class="w-full bg-black text-center text-[#fcf7db] rounded px-2 py-1 border border-gray-600"
+                            placeholder="81"
+                        />
+                    </div>
+                    <div class="flex flex-col justify-start">
+                        <label for="dri" class="text-sm">DRI</label>
+                        <input
+                            id="dri"
+                            type="number"
+                            class="w-full bg-black text-center text-[#fcf7db] rounded px-2 py-1 border border-gray-600"
+                            placeholder="90"
+                        />
+                    </div>
+                    <div class="flex flex-col justify-start">
+                        <label for="def" class="text-sm">DEF</label>
+                        <input
+                            id="def"
+                            type="number"
+                            class="w-full bg-black text-center text-[#fcf7db] rounded px-2 py-1 border border-gray-600"
+                            placeholder="45"
+                        />
+                    </div>
+                    <div class="flex flex-col justify-start">
+                        <label for="phy" class="text-sm ">PHY</label>
+                        <input
+                            id="phy"
+                            type="number"
+                            class="w-full bg-black text-center text-[#fcf7db] rounded px-2 py-1 border border-gray-600"
+                            placeholder="75"
+                        />
+                    </div>
+                </div>
+                <!-- GK Stats -->
+                <div class="col-span-2 grid grid-cols-6 gap-2" id="stats">
+                    <div class="flex flex-col justify-start">
+                        <label for="pac" class="text-sm">PAC</label>
+                        <input
+                            id="pac"
+                            type="number"
+                            class="w-full bg-black text-center text-[#fcf7db] rounded px-2 py-1 border border-gray-600"
+                            placeholder="93"
+                        />
+                    </div>
+                    <div class="flex flex-col justify-start">
+                        <label for="sho" class="text-sm">SHO</label>
+                        <input
+                            id="sho"
+                            type="number"
+                            class="w-full bg-black text-center text-[#fcf7db] rounded px-2 py-1 border border-gray-600"
+                            placeholder="87"
+                        />
+                    </div>
+                    <div class="flex flex-col justify-start">
+                        <label for="pas" class="text-sm">PAS</label>
+                        <input
+                            id="pas"
+                            type="number"
+                            class="w-full bg-black text-center text-[#fcf7db] rounded px-2 py-1 border border-gray-600"
+                            placeholder="81"
+                        />
+                    </div>
+                    <div class="flex flex-col justify-start">
+                        <label for="dri" class="text-sm">DRI</label>
+                        <input
+                            id="dri"
+                            type="number"
+                            class="w-full bg-black text-center text-[#fcf7db] rounded px-2 py-1 border border-gray-600"
+                            placeholder="90"
+                        />
+                    </div>
+                    <div class="flex flex-col justify-start">
+                        <label for="def" class="text-sm">DEF</label>
+                        <input
+                            id="def"
+                            type="number"
+                            class="w-full bg-black text-center text-[#fcf7db] rounded px-2 py-1 border border-gray-600"
+                            placeholder="45"
+                        />
+                    </div>
+                    <div class="flex flex-col justify-start">
+                        <label for="phy" class="text-sm ">PHY</label>
+                        <input
+                            id="phy"
+                            type="number"
+                            class="w-full bg-black text-center text-[#fcf7db] rounded px-2 py-1 border border-gray-600"
+                            placeholder="75"
+                        />
+                    </div>
+                </div>
+
+                <div class="col-span-2 mt-4">
+                    <button type="button" class="w-full bg-[#fcf7db] text-black font-bold py-2 px-4 rounded">Add Player</button>
+                </div>
+            </form>
+
+        </div>
     </div>
 </div>
-
-
-
-</body>
-</html>

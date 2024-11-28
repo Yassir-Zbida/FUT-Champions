@@ -1,5 +1,5 @@
 .card {
-    background-image: url('./images/cards/bronze-totw-24.webp');
+    background-image: url('./images/cards/playerCardLineup.png');
     background-size: contain;
     background-repeat: no-repeat;
     height: 150px;
@@ -11,4 +11,11 @@
     background-repeat: no-repeat;
     height: 290px;
     width: 200px;
+}
+.playerCard{
+    background-image: url('./images/cards/bronze-totw-24.webp');
+    background-size: contain;
+    background-repeat: no-repeat;
+    height: 500px;
+    width: 500px;
 }
