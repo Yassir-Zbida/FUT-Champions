@@ -46,7 +46,7 @@
             <a href="./index.html" class="block px-4 py-2 hover:bg-gray-700">Lineup Builder</a>
             <a href="./pages/players.html" class="block px-4 py-2 hover:bg-gray-700">Players</a>
             <a href="./pages/squads.html" class="block px-4 py-2 hover:bg-gray-700">Squads</a>
-            <a href="./pages/market.html" class="block px-4 py-2 hover:bg-gray-700">Market</a> 
+            <a href="./pages/market.html" class="block px-4 py-2 hover:bg-gray-700">Market</a>
         </nav>
     </div>
 
@@ -55,49 +55,49 @@
         <!-- Options Header Section  -->
         <div class="flex justify-between items-center px-6 mb-8 mx-5">
             <div class="flex items-center gap-4">
-                <button class="bg-[#991314] px-4 py-2 rounded-lg hover:bg-[#fcf7db] hover:text-[#991314] duration-75 text-[#fcf7db] font-medium" id="AddPlayer">Add New Player</button>  
+                <button
+                    class="bg-[#991314] px-4 py-2 rounded-lg hover:bg-[#fcf7db] hover:text-[#991314] duration-75 text-[#fcf7db] font-medium"
+                    id="AddPlayer">Add New Player</button>
                 <!-- Search Input -->
                 <div class="relative w-64">
-                    <input 
-                        type="text" 
-                        placeholder="Search for a Player" 
-                        class="border border-gray-500 rounded-lg pl-4 pr-10 py-2 w-full placeholder-gray-500 bg-transparent text-white focus:outline-none focus:ring-2 focus:ring-[#991314]" 
+                    <input type="text" placeholder="Search for a Player"
+                        class="border border-gray-500 rounded-lg pl-4 pr-10 py-2 w-full placeholder-gray-500 bg-transparent text-white focus:outline-none focus:ring-2 focus:ring-[#991314]"
                         id="searchInput">
                     <i class="ri-search-2-line absolute top-1/2 right-3 transform -translate-y-1/2 text-white"></i>
                 </div>
             </div>
-        <!-- Select Option  -->
-        <div class="relative w-48">
-            <select 
-                id="positionFilter" 
-                class="border border-gray-500 rounded-lg pl-4 pr-10 py-2 w-full bg-black text-white focus:outline-none focus:ring-2 focus:ring-[#991314] appearance-none">
-                <option value="all">All Positions</option>
-                <option value="CF">Striker</option>
-                <option value="RWF">Right Wing</option>
-                <option value="LWF">Left Wing</option>
-                <option value="CMF">Center Midfielder</option>
-                <option value="DMF">Defensive Midfielder</option>
-                <option value="RB">Right Back</option>
-                <option value="LB">Left Back</option>
-                <option value="CB">Center Back</option>
-                <option value="GK">Goalkeeper</option>
-            </select>
+            <!-- Select Option  -->
+            <div class="relative w-48">
+                <select id="positionFilter"
+                    class="border border-gray-500 rounded-lg pl-4 pr-10 py-2 w-full bg-black text-white focus:outline-none focus:ring-2 focus:ring-[#991314] appearance-none">
+                    <option value="all">All Positions</option>
+                    <option value="CF">Striker</option>
+                    <option value="RWF">Right Wing</option>
+                    <option value="LWF">Left Wing</option>
+                    <option value="CMF">Center Midfielder</option>
+                    <option value="DMF">Defensive Midfielder</option>
+                    <option value="RB">Right Back</option>
+                    <option value="LB">Left Back</option>
+                    <option value="CB">Center Back</option>
+                    <option value="GK">Goalkeeper</option>
+                </select>
+            </div>
+
         </div>
-        
-        </div>
-        
+
         <!-- Grid Container -->
         <div class="min-h-screen grid h-4/5 grid-cols-6 gap-4 mb-32 bg-contain ml-6 bg-no-repeat" id="playersGrid">
         </div>
     </div>
- <!-- Add Modal  -->
-    <div id="AddPlayerModal" class="fixed inset-0 bg-gray-800 bg-opacity-50 flex items-center justify-center hidden z-50">
+    <!-- Add Modal  -->
+    <div id="AddPlayerModal"
+        class="fixed inset-0 bg-gray-800 bg-opacity-50 flex items-center justify-center hidden z-50">
         <div class="bg-[#410000] text-[#fcf7db] p-8 rounded-lg max-w-4xl w-full">
             <div class="flex justify-between items-center mb-4">
                 <h2 id="modalTitle" class="text-2xl font-bold">Add New Player</h2>
                 <i class="ri-close-circle-line text-3xl cursor-pointer" id="closeModal"></i>
             </div>
-    
+
             <div id="modalContent" class="w-full">
                 <!-- Form for Player Info -->
                 <form id="playerForm" class="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -117,154 +117,125 @@
 
                         </select>
                     </div>
-    
+
                     <div class="space-y-2">
                         <label for="name" class="block text-sm">Name</label>
-                        <input id="name" type="text" class="w-full p-2 bg-black border border-gray-600 rounded" placeholder="Enter player name" required>
+                        <input id="name" type="text" class="w-full p-2 bg-black border border-gray-600 rounded"
+                            placeholder="Enter player name" required>
                     </div>
-    
+
                     <div class="space-y-2">
                         <label for="photo" class="block text-sm">Photo URL</label>
-                        <input id="photo" type="url" class="w-full p-2 bg-black border border-gray-600 rounded" placeholder="Enter player photo URL" required>
+                        <input id="photo" type="url" class="w-full p-2 bg-black border border-gray-600 rounded"
+                            placeholder="Enter player photo URL" required>
                     </div>
-    
+
                     <div class="space-y-2">
                         <label for="rating" class="block text-sm">Rating</label>
-                        <input id="rating" type="number" class="w-full p-2 bg-black border border-gray-600 rounded" placeholder="Enter player rating" required>
+                        <input id="rating" type="number" class="w-full p-2 bg-black border border-gray-600 rounded"
+                            placeholder="Enter player rating" required>
                     </div>
-    
+
                     <div class="space-y-2">
                         <label for="club" class="block text-sm">Club</label>
-                        <input id="club" type="text" class="w-full p-2 bg-black border border-gray-600 rounded" placeholder="Enter player club" required>
+                        <input id="club" type="text" class="w-full p-2 bg-black border border-gray-600 rounded"
+                            placeholder="Enter player club" required>
                     </div>
-    
+
                     <div class="space-y-2">
                         <label for="nationality" class="block text-sm">Nationality</label>
-                        <input id="nationality" type="text" class="w-full p-2 bg-black border border-gray-600 rounded" placeholder="Enter player nationality" required>
+                        <input id="nationality" type="text" class="w-full p-2 bg-black border border-gray-600 rounded"
+                            placeholder="Enter player nationality" required>
                     </div>
-    
+
                     <!-- All Position Stats -->
                     <div class="col-span-2 grid grid-cols-6 gap-2 " id="playerStats">
                         <div class="flex flex-col justify-start">
                             <label for="pac" class="text-sm">PAC</label>
-                            <input
-                                id="pac"
-                                type="number"
+                            <input id="pac" type="number"
                                 class="w-full bg-black text-center text-[#fcf7db] rounded px-2 py-1 border border-gray-600"
-                                placeholder="93"
-                            />
+                                placeholder="93" />
                         </div>
                         <div class="flex flex-col justify-start">
                             <label for="sho" class="text-sm">SHO</label>
-                            <input
-                                id="sho"
-                                type="number"
+                            <input id="sho" type="number"
                                 class="w-full bg-black text-center text-[#fcf7db] rounded px-2 py-1 border border-gray-600"
-                                placeholder="87"
-                            />
+                                placeholder="87" />
                         </div>
                         <div class="flex flex-col justify-start">
                             <label for="pas" class="text-sm">PAS</label>
-                            <input
-                                id="pas"
-                                type="number"
+                            <input id="pas" type="number"
                                 class="w-full bg-black text-center text-[#fcf7db] rounded px-2 py-1 border border-gray-600"
-                                placeholder="81"
-                            />
+                                placeholder="81" />
                         </div>
                         <div class="flex flex-col justify-start">
                             <label for="dri" class="text-sm">DRI</label>
-                            <input
-                                id="dri"
-                                type="number"
+                            <input id="dri" type="number"
                                 class="w-full bg-black text-center text-[#fcf7db] rounded px-2 py-1 border border-gray-600"
-                                placeholder="90"
-                            />
+                                placeholder="90" />
                         </div>
                         <div class="flex flex-col justify-start">
                             <label for="def" class="text-sm">DEF</label>
-                            <input
-                                id="def"
-                                type="number"
+                            <input id="def" type="number"
                                 class="w-full bg-black text-center text-[#fcf7db] rounded px-2 py-1 border border-gray-600"
-                                placeholder="45"
-                            />
+                                placeholder="45" />
                         </div>
                         <div class="flex flex-col justify-start">
                             <label for="phy" class="text-sm ">PHY</label>
-                            <input
-                                id="phy"
-                                type="number"
+                            <input id="phy" type="number"
                                 class="w-full bg-black text-center text-[#fcf7db] rounded px-2 py-1 border border-gray-600"
-                                placeholder="75"
-                            />
+                                placeholder="75" />
                         </div>
                     </div>
                     <!-- GK Stats -->
-                <div class="col-span-2 grid grid-cols-6 gap-2 hidden" id="gkStats">
-                    <div class="flex flex-col justify-start">
-                        <label for="div" class="text-sm">DIV</label>
-                        <input
-                            id="div"
-                            type="number"
-                            class="w-full bg-black text-center text-[#fcf7db] rounded px-2 py-1 border border-gray-600"
-                            placeholder="93"
-                        />
+                    <div class="col-span-2 grid grid-cols-6 gap-2 hidden" id="gkStats">
+                        <div class="flex flex-col justify-start">
+                            <label for="div" class="text-sm">DIV</label>
+                            <input id="div" type="number"
+                                class="w-full bg-black text-center text-[#fcf7db] rounded px-2 py-1 border border-gray-600"
+                                placeholder="93" />
+                        </div>
+                        <div class="flex flex-col justify-start">
+                            <label for="han" class="text-sm">HAN</label>
+                            <input id="han" type="number"
+                                class="w-full bg-black text-center text-[#fcf7db] rounded px-2 py-1 border border-gray-600"
+                                placeholder="87" />
+                        </div>
+                        <div class="flex flex-col justify-start">
+                            <label for="kic" class="text-sm">KIC</label>
+                            <input id="kic" type="number"
+                                class="w-full bg-black text-center text-[#fcf7db] rounded px-2 py-1 border border-gray-600"
+                                placeholder="81" />
+                        </div>
+                        <div class="flex flex-col justify-start">
+                            <label for="ref" class="text-sm">REF</label>
+                            <input id="ref" type="number"
+                                class="w-full bg-black text-center text-[#fcf7db] rounded px-2 py-1 border border-gray-600"
+                                placeholder="90" />
+                        </div>
+                        <div class="flex flex-col justify-start">
+                            <label for="spe" class="text-sm">SPE</label>
+                            <input id="spe" type="number"
+                                class="w-full bg-black text-center text-[#fcf7db] rounded px-2 py-1 border border-gray-600"
+                                placeholder="45" />
+                        </div>
+                        <div class="flex flex-col justify-start">
+                            <label for="pos" class="text-sm ">POS</label>
+                            <input id="pos" type="number"
+                                class="w-full bg-black text-center text-[#fcf7db] rounded px-2 py-1 border border-gray-600"
+                                placeholder="75" />
+                        </div>
                     </div>
-                    <div class="flex flex-col justify-start">
-                        <label for="han" class="text-sm">HAN</label>
-                        <input
-                            id="han"
-                            type="number"
-                            class="w-full bg-black text-center text-[#fcf7db] rounded px-2 py-1 border border-gray-600"
-                            placeholder="87"
-                        />
-                    </div>
-                    <div class="flex flex-col justify-start">
-                        <label for="kic" class="text-sm">KIC</label>
-                        <input
-                            id="kic"
-                            type="number"
-                            class="w-full bg-black text-center text-[#fcf7db] rounded px-2 py-1 border border-gray-600"
-                            placeholder="81"
-                        />
-                    </div>
-                    <div class="flex flex-col justify-start">
-                        <label for="ref" class="text-sm">REF</label>
-                        <input
-                            id="ref"
-                            type="number"
-                            class="w-full bg-black text-center text-[#fcf7db] rounded px-2 py-1 border border-gray-600"
-                            placeholder="90"
-                        />
-                    </div>
-                    <div class="flex flex-col justify-start">
-                        <label for="spe" class="text-sm">SPE</label>
-                        <input
-                            id="spe"
-                            type="number"
-                            class="w-full bg-black text-center text-[#fcf7db] rounded px-2 py-1 border border-gray-600"
-                            placeholder="45"
-                        />
-                    </div>
-                    <div class="flex flex-col justify-start">
-                        <label for="pos" class="text-sm ">POS</label>
-                        <input
-                            id="pos"
-                            type="number"
-                            class="w-full bg-black text-center text-[#fcf7db] rounded px-2 py-1 border border-gray-600"
-                            placeholder="75"
-                        />
-                    </div>
-                </div>
 
-
-    
                     <div class="col-span-2 mt-4">
-                        <button type="button" class="w-full bg-[#fcf7db] text-black font-bold py-2 px-4 rounded">Add Player</button>
+                        <button type="button" class="w-full bg-[#fcf7db] text-black font-bold py-2 px-4 rounded">Add
+                            Player</button>
                     </div>
                 </form>
             </div>
         </div>
     </div>
-     
+
+</body>
+
+</html>
