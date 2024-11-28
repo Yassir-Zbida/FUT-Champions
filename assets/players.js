@@ -136,6 +136,7 @@ function addNewPlayer(event) {
 
   if (position === 'GK') {
       stats = {
+          diving: parseInt(document.getElementById('div').value, 10) || 0,
           handling: parseInt(document.getElementById('han').value, 10) || 0,
           kicking: parseInt(document.getElementById('kic').value, 10) || 0,
           reflexes: parseInt(document.getElementById('ref').value, 10) || 0,
