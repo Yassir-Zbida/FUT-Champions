@@ -180,3 +180,4 @@ playerForm.querySelector('button').addEventListener('click', addNewPlayer);
 // Fetch players from localStorage
 const storedPlayers = JSON.parse(localStorage.getItem('players')) || [];
 showPlayers(storedPlayers);
+
