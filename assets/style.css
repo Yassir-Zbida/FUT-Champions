@@ -20,9 +20,20 @@
     width: 500px;
 }
 .playerCard2{
-    background-image: url('./images/cards/bronze-totw-24.webp');
+    background-image: url('./assets/images/cards/homecard.png');
+    background-color: black;
     background-size: contain;
     background-repeat: no-repeat;
-    height: 500px;
-    width: 500px;
+    height: 50px;
+    width: 50px;
 }
+
+.addcard{
+    background-color: black;
+    background-size: contain;
+    background-repeat: no-repeat;
+    height: 50px;
+    width: 50px;
+}
+
+

@@ -41,55 +41,26 @@ openModalCards.forEach(card => {
 });
 
 // Function to generate player HTML
+
 function generatePlayerCard(player) {
     return `
-      <div class="w-full flex h-[55%] pb-6">
-        <div class="w-[60%] h-full flex justify-end items-end">
-          <div class="flex flex-col items-center justify-center mr-1">
-            <p>${player.rating}</p>
-            <p>${player.position}</p>
-            <img class="h-6 w-6" src="${player.logo}" alt="Club Logo">
-          </div>
+      <div class="relative w-32 h-40 rounded-lg text-white overflow-hidden">
+        <div class="absolute top-0 left-0 w-full h-full  opacity-80 bg-[url('./assets/images/cards/homecard.png')] bg-no-repeat"></div>
+  
+        <div class="absolute top-2 left-2 text-center">
+          <p class="text-xl font-bold">${player.rating}</p>
+          <p class="text-sm font-semibold">${player.position}</p>
+          <img class="h-6 w-6 mt-1" src="${player.logo}" alt="Club Logo">
         </div>
-        <div class="h-full w-full flex justify-center items-end">
-          <div>
-            <img class="h-24 w-18 relative right-4" src="${player.photo}" alt="Player Photo">
-          </div>
+  
+        <div class="absolute bottom-10 ml-10  ">
+          <img class="w-28 h-28 rounded-full object-cover" src="${player.photo}" alt="Player Photo">
         </div>
-      </div>
-      <div class="w-full h-[45%] flex flex-col">
-        <div class="w-full h-[30%] flex justify-center gap-2 items-center">
-          <p>${player.name}</p>
-          <img class="h-4" src="${player.flag}" alt="Player Nationality">
-        </div>
-        <div class="w-full h-full flex gap-8">
-          <div class="h-full w-[50%] flex flex-col items-end text-xs">
-            <div class="flex gap-2">
-              <p>${player.position === 'GK' ? 'DIV' : 'PAC'}</p>
-              <p>${player.position === 'GK' ? player.diving : player.pace}</p>
-            </div>
-            <div class="flex gap-2">
-              <p>${player.position === 'GK' ? 'HAN' : 'SHO'}</p>
-              <p>${player.position === 'GK' ? player.handling : player.shooting}</p>
-            </div>
-            <div class="flex gap-2">
-              <p>${player.position === 'GK' ? 'KIC' : 'PAS'}</p>
-              <p>${player.position === 'GK' ? player.kicking : player.passing}</p>
-            </div>
-          </div>
-          <div class="h-full w-[50%] flex flex-col items-start text-xs">
-            <div class="flex gap-2">
-              <p>${player.position === 'GK' ? 'REF' : 'DRI'}</p>
-              <p>${player.position === 'GK' ? player.reflexes : player.dribbling}</p>
-            </div>
-            <div class="flex gap-2">
-              <p>${player.position === 'GK' ? 'SPE' : 'DEF'}</p>
-              <p>${player.position === 'GK' ? player.speed : player.defending}</p>
-            </div>
-            <div class="flex gap-2">
-              <p>${player.position === 'GK' ? 'POS' : 'PHY'}</p>
-              <p>${player.position === 'GK' ? player.positioning : player.physical}</p>
-            </div>
+  
+        <div class="absolute bottom-2 left-0 w-full text-center text-sm font-bold flex justify-between items-center">
+          ${player.name}
+          <div class="flex justify-center items-center mt-1">
+            <img class="h-4 w-6 mr-1" src="${player.flag}" alt="Player Nationality">
           </div>
         </div>
       </div>
@@ -103,7 +74,7 @@ function generatePlayerCard(player) {
   
     players.forEach((player) => {
         const playerCard = document.createElement('div');
-        playerCard.classList.add('cardPlayers', 'p-2', 'text-white');
+        playerCard.classList.add('cardPlayers2', 'p-2', 'text-white');
         playerCard.innerHTML = generatePlayerCard(player);
         playersContainer.appendChild(playerCard);
     });

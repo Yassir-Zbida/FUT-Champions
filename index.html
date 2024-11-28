@@ -94,19 +94,20 @@
     </div>
 
     <!-- Add Player to Lineup Modal  -->
-    <!-- Add Modal  -->
     <div id="AddPlayerModal"
-        class="fixed inset-0 bg-gray-800 bg-opacity-50 flex items-center justify-center hidden z-50">
-        <div class="bg-[#410000] text-[#fcf7db] p-8 rounded-lg max-w-4xl w-full">
-            <div class="flex justify-between items-center mb-4">
-                <h2 id="modalTitle" class="text-2xl font-bold">Add Player To Your LineUp</h2>
-                <i class="ri-close-circle-line text-3xl cursor-pointer" id="closeModal"></i>
-            </div>
-        <!-- Grid Container -->
-        <div class="min-h-screen grid h-4/5 grid-cols-6 gap-4 mb-32 bg-contain ml-6 bg-no-repeat" id="playersGrid">
+    class="fixed inset-0 bg-gray-800 bg-opacity-50 flex items-center justify-center hidden z-50">
+    <div class="bg-[#410000] text-[#fcf7db] p-8 rounded-lg max-w-4xl w-full h-[500px]">
+        <div class="flex justify-between items-center mb-4">
+            <h2 id="modalTitle" class="text-2xl font-bold">Add Player To Your LineUp</h2>
+            <i class="ri-close-circle-line text-3xl cursor-pointer" id="closeModal"></i>
         </div>
+        <!-- Grid Container -->
+        <div class="grid grid-cols-5 gap-4 pt-10 mb-32 overflow-y-scroll h-[400px] bg-contain ml-6 bg-no-repeat" id="playersGrid">
+            <!-- Players go here -->
         </div>
     </div>
+    </div>
+
     </div>
 
 </body>
