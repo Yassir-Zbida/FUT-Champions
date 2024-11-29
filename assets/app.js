@@ -34,8 +34,9 @@ closeModal.addEventListener('click', () => {
 });
 
 openModalCards.forEach(card => {
-    card.addEventListener('click', () => {
-        console.log('click');
+    card.addEventListener('click', (event) => {
+        const cardId = event.target.id;
+        console.log(cardId);
         addPlayerModal.classList.remove('hidden');
     });
 });
@@ -67,18 +68,34 @@ function generatePlayerCard(player) {
     `;
   }
   
-  // Show players in the grid section
-  function showPlayers(players) {
+// Show players in the grid section
+function showPlayers(players) {
     const playersContainer = document.getElementById('playersGrid');
-    playersContainer.innerHTML = ''; 
-  
+    playersContainer.innerHTML = '';
+
     players.forEach((player) => {
         const playerCard = document.createElement('div');
         playerCard.classList.add('cardPlayers2', 'p-2', 'text-white');
         playerCard.innerHTML = generatePlayerCard(player);
         playersContainer.appendChild(playerCard);
+
+        playerCard.addEventListener('click', () => {
+            const playerChossen = docu
+            console.log(player.name); 
+            addPlayerModal.classList.remove('hidden'); 
+        });
     });
-  }
+
+    const modalCards = addPlayerModal.querySelectorAll('.cardPlayers2');
+    modalCards.forEach(card => {
+        card.addEventListener('click', () => {
+            console.log('MODAL CLOSED');
+            addPlayerModal.classList.add('hidden');
+        });
+    });
+}
+
+
 
 // Fetch players from localStorage
 const storedPlayers = JSON.parse(localStorage.getItem('players')) || [];
