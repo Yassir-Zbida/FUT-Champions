@@ -83,49 +83,43 @@ function generatePlayerCard(player) {
 }
 
 // Function to show players in the grid section
-function showPlayers(players) {
+function showPlayers(players, positionFilter = null) {
     const playersContainer = document.getElementById('playersGrid');
     const addPlayerModal = document.getElementById('AddPlayerModal');
-    let selectedPlayerCardId = null;
-    let selectedPlayerName = null;
+    playersContainer.innerHTML = ''; // Clear previous content
 
+    // Filter players by position if a filter is provided
+    const filteredPlayers = positionFilter ? players.filter(player => player.position === positionFilter) : players;
 
-    playersContainer.innerHTML = ''; 
-
-    players.forEach((player) => {
+    filteredPlayers.forEach((player) => {
         const playerCard = document.createElement('div');
         playerCard.classList.add('cardPlayers2', 'p-2', 'text-white');
         playerCard.innerHTML = generatePlayerCard(player);
         playersContainer.appendChild(playerCard);
 
         playerCard.addEventListener('click', () => {
-            selectedPlayerName = player.name; 
+            const selectedPlayerName = player.name;
             console.log(selectedPlayerName);
             console.log(cardId);
             addPlayerModal.classList.add('hidden');
             const selectedPlayerCardId = document.getElementById(cardId);
             selectedPlayerCardId.classList.remove('card');
-            selectedPlayerCardId.innerHTML=""
             selectedPlayerCardId.innerHTML = `
-            <div class="relative w-32 h-40 rounded-lg text-white overflow-hidden">
-        <div class="absolute top-0 left-0 w-full h-full opacity-80 bg-[url('./assets/images/cards/homecard.png')] bg-no-repeat"></div>
-  
-        <div class="absolute top-2 left-2 text-center">
-          <p class="text-xl font-bold">${player.rating}</p>
-          <p class="text-sm font-semibold">${player.position}</p>
-          <img class="h-6 w-6 mt-1" src="${player.logo}" alt="Club Logo">
-        </div>
-  
-        <div class="absolute bottom-10 ml-10">
-          <img class="w-28 h-28 rounded-full object-cover" src="${player.photo}" alt="Player Photo">
-        </div>
-  
-        <div class="absolute bottom-2 left-0 w-full text-center text-sm font-bold flex items-center justify-center">
-          ${player.name}
-          
-        </div>
-      </div>
-        `;
+                <div class="relative w-32 h-40 rounded-lg text-white overflow-hidden">
+                    <div class="absolute top-0 left-0 w-full h-full opacity-80 bg-[url('./assets/images/cards/homecard.png')] bg-no-repeat"></div>
+                    <div class="absolute top-2 left-2 text-center">
+                        <p class="text-xl font-bold">${player.rating}</p>
+                        <p class="text-sm font-semibold">${player.position}</p>
+                        <img class="h-6 w-6 mt-1" src="${player.logo}" alt="Club Logo">
+                    </div>
+                    <div class="absolute bottom-10 ml-10">
+                        <img class="w-28 h-28 rounded-full object-cover" src="${player.photo}" alt="Player Photo">
+                    </div>
+                    <div class="absolute bottom-2 left-0 w-full text-center text-sm font-bold flex items-center justify-center">
+                        ${player.name}
+                    </div>
+                </div>
+            `;
         });
     });
 }
