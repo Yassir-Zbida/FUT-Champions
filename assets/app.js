@@ -54,7 +54,7 @@ if (closeModal && addPlayerModal) {
             addPlayerModal.classList.remove('hidden');
         });
     });
-} 
+}
 
 // Function to generate player HTML
 function generatePlayerCard(player) {
@@ -83,15 +83,12 @@ function generatePlayerCard(player) {
 }
 
 // Function to show players in the grid section
-function showPlayers(players, positionFilter = null) {
+function showPlayers(players) {
     const playersContainer = document.getElementById('playersGrid');
     const addPlayerModal = document.getElementById('AddPlayerModal');
-    playersContainer.innerHTML = ''; // Clear previous content
+    playersContainer.innerHTML = ''; 
 
-    // Filter players by position if a filter is provided
-    const filteredPlayers = positionFilter ? players.filter(player => player.position === positionFilter) : players;
-
-    filteredPlayers.forEach((player) => {
+    players.forEach((player) => {
         const playerCard = document.createElement('div');
         playerCard.classList.add('cardPlayers2', 'p-2', 'text-white');
         playerCard.innerHTML = generatePlayerCard(player);
