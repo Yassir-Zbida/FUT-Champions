@@ -1,6 +1,8 @@
 # Ultimate Team Builder Application
 
- ![TaskFlow App Screenshot](./assets/images/mockup.png)
+ ![App Screenshot](./assets/images/mockup.png)
+ ![App Screenshot](./assets/images/mockup2.png)
+
 
 Une application interactive pour créer, personnaliser et gérer une équipe FUT (Ultimate Team). L'accent est mis sur une interface utilisateur dynamique, la gestion des données via `localStorage` et une expérience immersive pour les utilisateurs. 
 
