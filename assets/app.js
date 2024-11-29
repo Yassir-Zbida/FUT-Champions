@@ -1,52 +1,66 @@
-// Mobile Sidebar Menu Function 
+// Mobile Sidebar Menu Function
 const menuToggle = document.getElementById('menuToggle');
 const sidebar = document.getElementById('sidebar');
 const closeSidebar = document.getElementById('closeSidebar');
 
-menuToggle.addEventListener('click', () => {
-    sidebar.classList.toggle('hidden');
-});
+if (menuToggle && sidebar && closeSidebar) {
+    menuToggle.addEventListener('click', () => {
+        sidebar.classList.toggle('hidden');
+    });
 
-closeSidebar.addEventListener('click', () => {
-    sidebar.classList.add('hidden');
-});
-
-document.addEventListener('click', (event) => {
-    if (!sidebar.contains(event.target) && !menuToggle.contains(event.target)) {
+    closeSidebar.addEventListener('click', () => {
         sidebar.classList.add('hidden');
-    }
-});
+    });
 
-// fetch json file
+    document.addEventListener('click', (event) => {
+        if (!sidebar.contains(event.target) && !menuToggle.contains(event.target)) {
+            sidebar.classList.add('hidden');
+        }
+    });
+} else {
+    console.warn('Sidebar menu elements are missing in the DOM.');
+}
+
+// Fetch JSON file and store players in localStorage
 fetch('https://fut.codia-dev.com/data.json')
-.then((response) => response.json())
-.then((data)=> localStorage.setItem('players', JSON.stringify(data.players)))
+    .then((response) => {
+        return response.json();
+    })
+    .then((data) => {
+        if (data.players) {
+            localStorage.setItem('players', JSON.stringify(data.players));
+            showPlayers(data.players); 
+        } else {
+            console.error('Players data is missing in the JSON response.');
+        }
+    })
+    .catch((error) => console.error('Failed to fetch players:', error));
 
-
-
-// add player to bench modal 
+// Modal for adding a player to the bench
 const closeModal = document.getElementById('closeModal');
 const openModalCards = document.querySelectorAll('.card');
 const addPlayerModal = document.getElementById('AddPlayerModal');
+let cardId = null;
 
-closeModal.addEventListener('click', () => {
-    addPlayerModal.classList.add('hidden');
-});
-
-openModalCards.forEach(card => {
-    card.addEventListener('click', (event) => {
-        const cardId = event.target.id;
-        console.log(cardId);
-        addPlayerModal.classList.remove('hidden');
+if (closeModal && addPlayerModal) {
+    closeModal.addEventListener('click', () => {
+        addPlayerModal.classList.add('hidden');
     });
-});
+
+    openModalCards.forEach((card) => {
+        card.addEventListener('click', (event) => {
+            cardId = event.currentTarget.id;
+            console.log(cardId);
+            addPlayerModal.classList.remove('hidden');
+        });
+    });
+} 
 
 // Function to generate player HTML
-
 function generatePlayerCard(player) {
     return `
       <div class="relative w-32 h-40 rounded-lg text-white overflow-hidden">
-        <div class="absolute top-0 left-0 w-full h-full  opacity-80 bg-[url('./assets/images/cards/homecard.png')] bg-no-repeat"></div>
+        <div class="absolute top-0 left-0 w-full h-full opacity-80 bg-[url('./assets/images/cards/homecard.png')] bg-no-repeat"></div>
   
         <div class="absolute top-2 left-2 text-center">
           <p class="text-xl font-bold">${player.rating}</p>
@@ -54,7 +68,7 @@ function generatePlayerCard(player) {
           <img class="h-6 w-6 mt-1" src="${player.logo}" alt="Club Logo">
         </div>
   
-        <div class="absolute bottom-10 ml-10  ">
+        <div class="absolute bottom-10 ml-10">
           <img class="w-28 h-28 rounded-full object-cover" src="${player.photo}" alt="Player Photo">
         </div>
   
@@ -66,12 +80,17 @@ function generatePlayerCard(player) {
         </div>
       </div>
     `;
-  }
-  
-// Show players in the grid section
+}
+
+// Function to show players in the grid section
 function showPlayers(players) {
     const playersContainer = document.getElementById('playersGrid');
-    playersContainer.innerHTML = '';
+    const addPlayerModal = document.getElementById('AddPlayerModal');
+    let selectedPlayerCardId = null;
+    let selectedPlayerName = null;
+
+
+    playersContainer.innerHTML = ''; 
 
     players.forEach((player) => {
         const playerCard = document.createElement('div');
@@ -80,23 +99,76 @@ function showPlayers(players) {
         playersContainer.appendChild(playerCard);
 
         playerCard.addEventListener('click', () => {
-            const playerChossen = docu
-            console.log(player.name); 
-            addPlayerModal.classList.remove('hidden'); 
-        });
-    });
-
-    const modalCards = addPlayerModal.querySelectorAll('.cardPlayers2');
-    modalCards.forEach(card => {
-        card.addEventListener('click', () => {
-            console.log('MODAL CLOSED');
+            selectedPlayerName = player.name; 
+            console.log(selectedPlayerName);
+            console.log(cardId);
             addPlayerModal.classList.add('hidden');
+            const selectedPlayerCardId = document.getElementById(cardId);
+            selectedPlayerCardId.classList.remove('card');
+            selectedPlayerCardId.innerHTML=""
+            selectedPlayerCardId.innerHTML = `
+            <div class="w-full flex h-[55%] pb-4">
+      <div class="w-[60%] h-full flex justify-end items-end">
+        <div class="flex flex-col items-center justify-center mr-1">
+          <p>${player.rating}</p>
+          <p>${player.position}</p>
+          <img class="h-6 w-6" src="${player.logo}" alt="Club Logo">
+        </div>
+      </div>
+      <div class="h-full w-full flex justify-center items-end">
+        <div>
+          <img class="h-16 w-16 relative right-2" src="${player.photo}" alt="Player Photo">
+        </div>
+      </div>
+    </div>
+    <div class="w-full h-[45%] flex flex-col">
+      <div class="w-full h-[30%] flex justify-center gap-2 items-center">
+        <p>${player.name}</p>
+        <img class="h-4" src="${player.flag}" alt="Player Nationality">
+      </div>
+      <div class="w-full h-full flex gap-2 text-[5px]">
+        <div class="h-full w-[50%] flex flex-col items-end text-xs">
+          <div class="flex gap-2">
+            <p class="text-xs">${player.position === 'GK' ? 'DIV' : 'PAC'}</p>
+            <p class="text-xs">${player.position === 'GK' ? player.diving : player.pace}</p>
+          </div>
+          <div class="flex gap-2">
+            <p>${player.position === 'GK' ? 'HAN' : 'SHO'}</p>
+            <p>${player.position === 'GK' ? player.handling : player.shooting}</p>
+          </div>
+          <div class="flex gap-2">
+            <p>${player.position === 'GK' ? 'KIC' : 'PAS'}</p>
+            <p>${player.position === 'GK' ? player.kicking : player.passing}</p>
+          </div>
+        </div>
+        <div class="h-full w-[50%] flex flex-col items-start text-xs">
+          <div class="flex gap-2">
+            <p>${player.position === 'GK' ? 'REF' : 'DRI'}</p>
+            <p>${player.position === 'GK' ? player.reflexes : player.dribbling}</p>
+          </div>
+          <div class="flex gap-2">
+            <p>${player.position === 'GK' ? 'SPE' : 'DEF'}</p>
+            <p>${player.position === 'GK' ? player.speed : player.defending}</p>
+          </div>
+          <div class="flex gap-2">
+            <p>${player.position === 'GK' ? 'POS' : 'PHY'}</p>
+            <p>${player.position === 'GK' ? player.positioning : player.physical}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+        `;
+
+        // Add the 'addcard' class for styling
+        selectedPlayerCardId.classList.add('addcard');
         });
     });
 }
 
-
-
-// Fetch players from localStorage
+// Fetch players from localStorage and display them
 const storedPlayers = JSON.parse(localStorage.getItem('players')) || [];
-showPlayers(storedPlayers);
+if (storedPlayers.length > 0) {
+    showPlayers(storedPlayers);
+} else {
+    console.warn('No players found in localStorage.');
+}

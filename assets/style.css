@@ -29,11 +29,11 @@
 }
 
 .addcard{
-    background-color: black;
+    background-image: url('./images/cards/bronze-totw-24.webp');
     background-size: contain;
     background-repeat: no-repeat;
-    height: 50px;
-    width: 50px;
+    height: 210px;
+    width: 150px;
 }
 
 
