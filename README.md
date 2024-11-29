@@ -1,5 +1,7 @@
 # Ultimate Team Builder Application
 
+ ![TaskFlow App Screenshot](./assets/images/mockup.png)
+
 Une application interactive pour créer, personnaliser et gérer une équipe FUT (Ultimate Team). L'accent est mis sur une interface utilisateur dynamique, la gestion des données via `localStorage` et une expérience immersive pour les utilisateurs. 
 
 ## 🚀 Fonctionnalités Clés
@@ -13,8 +15,8 @@ Une application interactive pour créer, personnaliser et gérer une équipe FUT
 - Ajout, modification et suppression des joueurs via une interface conviviale.
 
 ### 2. **Positionnement selon la Formation Tactique**
-- Respect des formations prédéfinies (e.g., `4-3-3`, `4-4-2`).
-- Placement automatique des joueurs dans des postes adaptés (e.g., `LW`, `ST`, `CM`).
+- Respect des formations prédéfinies (`4-3-3`).
+- Placement automatique des joueurs dans des postes adaptés (e.g., `LWF`, `CF`, `AMF`).
 - Gestion stricte du maximum de **11 joueurs sur le terrain**, avec des réserves disponibles.
 
 ### 3. **Calcul Dynamique de la Chimie**
@@ -40,7 +42,7 @@ Une application interactive pour créer, personnaliser et gérer une équipe FUT
 
 ## 🛠️ Technologies Requises
 - **HTML**
-- **CSS** (natif ou via framework comme Tailwind CSS ou Bootstrap)
+- **CSS** (Framework Tailwind)
 - **JavaScript Vanilla** (DOM natif)
 
 ## 📚 User Stories
@@ -54,7 +56,7 @@ Une application interactive pour créer, personnaliser et gérer une équipe FUT
 ### 2. **Gestion des Formations**
 - **En tant qu'utilisateur**, je souhaite choisir une formation tactique et voir le positionnement des joueurs ajusté.
 - Critères d'acceptation :
-  - Sélection entre formations prédéfinies (e.g., `4-4-2`, `4-3-3`).
+  - Sélection entre formations prédéfinies (`4-3-3`).
   - Postes et positions mis à jour automatiquement.
 
 ### 3. **Calcul de la Chimie**
