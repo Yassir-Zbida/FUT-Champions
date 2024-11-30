@@ -49,10 +49,10 @@ if (closeModal && addPlayerModal) {
 
     openModalCards.forEach((card) => {
         card.addEventListener('click', (event) => {
-            cardId = event.currentTarget.id; // Set cardId when a card is clicked
+            cardId = event.currentTarget.id; 
             console.log(cardId);
             addPlayerModal.classList.remove('hidden');
-            showPlayers(storedPlayers); // Call showPlayers after setting cardId
+            showPlayers(storedPlayers); 
         });
     });
 }
@@ -83,6 +83,7 @@ function generatePlayerCard(player) {
     `;
 }
 
+let deleteBtn ;
 // Function to show players in the grid section
 function showPlayers(players) {
     const playersContainer = document.getElementById('playersGrid');
@@ -109,7 +110,7 @@ function showPlayers(players) {
             const selectedPlayerCardId = document.getElementById(cardId);
             selectedPlayerCardId.classList.remove('card');
             selectedPlayerCardId.innerHTML = `
-                <div class="relative w-32 h-40 rounded-lg text-white overflow-hidden">
+                <div id="${player.id}" class="relative w-32 h-40 rounded-lg text-white overflow-hidden">
                     <div class="absolute top-0 left-0 w-full h-full opacity-80 bg-[url('./assets/images/cards/homecard.png')] bg-no-repeat"></div>
                     <div class="absolute top-2 left-2 text-center">
                         <p class="text-xl font-bold">${player.rating}</p>
@@ -119,13 +120,31 @@ function showPlayers(players) {
                     <div class="absolute bottom-10 ml-10">
                         <img class="w-28 h-28 rounded-full object-cover" src="${player.photo}" alt="Player Photo">
                     </div>
-                    <div class="absolute bottom-2 left-0 w-full text-center text-sm font-bold flex items-center justify-center">
+                    <div class="  absolute bottom-2 left-0 w-full text-center text-sm font-bold flex items-center justify-center">
                         ${player.name}
                     </div>
+                    <i class="absolute ri-delete-bin-6-line text-[#991314] mr-4 text-sm bottom-2 left-0 data-id="${player.id}"" id="deleteBtn"></i>
                 </div>
             `;
+            deleteBtn = document.querySelectorAll('#deleteBtn');
+            deletePlayer(deleteBtn, player.id);
         });
     });
+}
+
+function deletePlayer(dele, playerId){
+    dele.forEach(Element=>{
+        Element.addEventListener('click', function(e){
+            e.stopPropagation();
+            console.log("player idd", playerId);
+            console.log("deleteBtndeleteBtndeleteBtn : ",dele);
+            const playerCard = document.getElementById(cardId);
+        if (playerCard) {
+        playerCard.innerHTML = ''; 
+        playerCard.classList.add('card');
+          }
+        })
+    })
 }
 
 // Fetch players from localStorage and display them
@@ -135,3 +154,4 @@ if (storedPlayers.length > 0) {
 } else {
     console.warn('No players found in localStorage.');
 }
+

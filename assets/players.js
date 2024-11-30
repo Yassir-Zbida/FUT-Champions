@@ -51,6 +51,7 @@ function generatePlayerCard(player) {
         </div>
       </div>
     </div>
+    <i class="absolute ri-delete-bin-6-line text-[#991314] mr-4 text-sm bottom-2 left-0 data-id="${player.id}"" id="deleteBtn"></i>
   `;
 }
 
