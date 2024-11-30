@@ -29,7 +29,7 @@ fetch('https://fut.codia-dev.com/data.json')
     .then((data) => {
         if (data.players) {
             localStorage.setItem('players', JSON.stringify(data.players));
-            showPlayers(data.players); 
+            showPlayers(data.players);  // Display all players initially
         } else {
             console.error('Players data is missing in the JSON response.');
         }
@@ -49,9 +49,10 @@ if (closeModal && addPlayerModal) {
 
     openModalCards.forEach((card) => {
         card.addEventListener('click', (event) => {
-            cardId = event.currentTarget.id;
+            cardId = event.currentTarget.id; // Set cardId when a card is clicked
             console.log(cardId);
             addPlayerModal.classList.remove('hidden');
+            showPlayers(storedPlayers); // Call showPlayers after setting cardId
         });
     });
 }
@@ -86,9 +87,13 @@ function generatePlayerCard(player) {
 function showPlayers(players) {
     const playersContainer = document.getElementById('playersGrid');
     const addPlayerModal = document.getElementById('AddPlayerModal');
-    playersContainer.innerHTML = ''; 
+    playersContainer.innerHTML = '';  
 
-    players.forEach((player) => {
+    const filteredPlayers = cardId 
+        ? players.filter(player => player.position === cardId) 
+        : players;
+
+    filteredPlayers.forEach((player) => {
         const playerCard = document.createElement('div');
         playerCard.classList.add('cardPlayers2', 'p-2', 'text-white');
         playerCard.innerHTML = generatePlayerCard(player);
@@ -98,7 +103,9 @@ function showPlayers(players) {
             const selectedPlayerName = player.name;
             console.log(selectedPlayerName);
             console.log(cardId);
+
             addPlayerModal.classList.add('hidden');
+
             const selectedPlayerCardId = document.getElementById(cardId);
             selectedPlayerCardId.classList.remove('card');
             selectedPlayerCardId.innerHTML = `
@@ -124,7 +131,7 @@ function showPlayers(players) {
 // Fetch players from localStorage and display them
 const storedPlayers = JSON.parse(localStorage.getItem('players')) || [];
 if (storedPlayers.length > 0) {
-    showPlayers(storedPlayers);
+    showPlayers(storedPlayers); // Show all players initially
 } else {
     console.warn('No players found in localStorage.');
 }
