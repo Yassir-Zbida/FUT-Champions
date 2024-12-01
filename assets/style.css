@@ -1,10 +1,14 @@
+
 .card {
     background-image: url('./images/cards/playerCardLineup.png');
     background-size: contain;
     background-repeat: no-repeat;
-    height: 150px;
-    width: 100px;
+    height: auto;
+    width: 20vw; 
+    max-width: 100px;
+    aspect-ratio: 2 / 3; 
 }
+
 .cardPlayers{
     background-image: url('./images/cards/bronze-totw-24.webp');
     background-size: contain;
@@ -48,4 +52,10 @@
     background-color: #e1f5fe;
     transform: scale(1.05); 
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+}
+
+@media (max-width: 768px) {
+    .card {
+        width: 15vw; 
+    }
 }

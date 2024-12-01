@@ -23,13 +23,11 @@ if (menuToggle && sidebar && closeSidebar) {
 
 // Fetch JSON file and store players in localStorage
 fetch('https://fut.codia-dev.com/data.json')
-    .then((response) => {
-        return response.json();
-    })
+    .then((response) => response.json())
     .then((data) => {
         if (data.players) {
             localStorage.setItem('players', JSON.stringify(data.players));
-            showPlayers(data.players);  // Display all players initially
+            showPlayers(data.players); // Display all players initially
         } else {
             console.error('Players data is missing in the JSON response.');
         }
@@ -50,7 +48,7 @@ if (closeModal && addPlayerModal) {
     openModalCards.forEach((card) => {
         card.addEventListener('click', (event) => {
             cardId = event.currentTarget.id; 
-            console.log(cardId);
+            console.log("Card ID:", cardId);
             addPlayerModal.classList.remove('hidden');
             showPlayers(storedPlayers); 
         });
@@ -60,34 +58,29 @@ if (closeModal && addPlayerModal) {
 // Function to generate player HTML
 function generatePlayerCard(player) {
     return `
-      <div class="relative w-32 h-40 rounded-lg text-white overflow-hidden">
-        <div class="absolute top-0 left-0 w-full h-full opacity-80 bg-[url('./assets/images/cards/homecard.png')] bg-no-repeat"></div>
-  
-        <div class="absolute top-2 left-2 text-center">
-          <p class="text-xl font-bold">${player.rating}</p>
-          <p class="text-sm font-semibold">${player.position}</p>
-          <img class="h-6 w-6 mt-1" src="${player.logo}" alt="Club Logo">
+        <div class="relative w-32 h-40 rounded-lg text-white overflow-hidden">
+            <div class="absolute top-0 left-0 w-full h-full opacity-80 bg-[url('./assets/images/cards/homecard.png')] bg-no-repeat"></div>
+            <div class="absolute top-2 left-2 text-center">
+                <p class="text-xl font-bold">${player.rating}</p>
+                <p class="text-sm font-semibold">${player.position}</p>
+                <img class="h-6 w-6 mt-1" src="${player.logo}" alt="Club Logo">
+            </div>
+            <div class="absolute bottom-10 ml-10">
+                <img class="w-28 h-28 rounded-full object-cover" src="${player.photo}" alt="Player Photo">
+            </div>
+            <div class="absolute bottom-2 left-0 w-full text-center text-sm font-bold flex justify-between items-center">
+                ${player.name}
+                <div class="flex justify-center items-center mt-1">
+                    <img class="h-4 w-6 mr-1" src="${player.flag}" alt="Player Nationality">
+                </div>
+            </div>
         </div>
-  
-        <div class="absolute bottom-10 ml-10">
-          <img class="w-28 h-28 rounded-full object-cover" src="${player.photo}" alt="Player Photo">
-        </div>
-  
-        <div class="absolute bottom-2 left-0 w-full text-center text-sm font-bold flex justify-between items-center">
-          ${player.name}
-          <div class="flex justify-center items-center mt-1">
-            <img class="h-4 w-6 mr-1" src="${player.flag}" alt="Player Nationality">
-          </div>
-        </div>
-      </div>
     `;
 }
 
-let deleteBtn ;
 // Function to show players in the grid section
 function showPlayers(players) {
     const playersContainer = document.getElementById('playersGrid');
-    const addPlayerModal = document.getElementById('AddPlayerModal');
     playersContainer.innerHTML = '';  
 
     const filteredPlayers = cardId 
@@ -96,55 +89,53 @@ function showPlayers(players) {
 
     filteredPlayers.forEach((player) => {
         const playerCard = document.createElement('div');
-        playerCard.classList.add('cardPlayers2', 'p-2', 'text-white');
+        // playerCard.classList.add('cardPlayers2', 'p-2', 'text-white');
         playerCard.innerHTML = generatePlayerCard(player);
         playersContainer.appendChild(playerCard);
 
         playerCard.addEventListener('click', () => {
             const selectedPlayerName = player.name;
             console.log(selectedPlayerName);
-            console.log(cardId);
 
             addPlayerModal.classList.add('hidden');
-
-            const selectedPlayerCardId = document.getElementById(cardId);
-            selectedPlayerCardId.classList.remove('card');
-            selectedPlayerCardId.innerHTML = `
-                <div id="${player.id}" class="relative w-32 h-40 rounded-lg text-white overflow-hidden">
-                    <div class="absolute top-0 left-0 w-full h-full opacity-80 bg-[url('./assets/images/cards/homecard.png')] bg-no-repeat"></div>
-                    <div class="absolute top-2 left-2 text-center">
-                        <p class="text-xl font-bold">${player.rating}</p>
-                        <p class="text-sm font-semibold">${player.position}</p>
-                        <img class="h-6 w-6 mt-1" src="${player.logo}" alt="Club Logo">
+            const selectedCard = document.getElementById(cardId);
+            
+            if (selectedCard) {
+                selectedCard.classList.remove('card');
+                selectedCard.innerHTML = `
+                    <div id="${player.id}" class="relative w-32 h-40 rounded-lg text-white overflow-hidden">
+                        <div class="absolute top-0 left-0 w-full h-full opacity-80 bg-[url('./assets/images/cards/homecard.png')] bg-no-repeat"></div>
+                        <div class="absolute top-2 left-2 text-center">
+                            <p class="text-xl font-bold">${player.rating}</p>
+                            <p class="text-sm font-semibold">${player.position}</p>
+                            <img class="h-6 w-6 mt-1" src="${player.logo}" alt="Club Logo">
+                        </div>
+                        <div class="absolute bottom-10 ml-10">
+                            <img class="w-28 h-28 rounded-full object-cover" src="${player.photo}" alt="Player Photo">
+                        </div>
+                        <div class="absolute bottom-2 left-0 w-full text-center text-sm font-bold">
+                            ${player.name}
+                        </div>
+                        <i class="absolute ri-delete-bin-6-line text-[#991314] text-sm bottom-2 left-0 cursor-pointer" data-id="${player.id}" id="deleteBtn"></i>
                     </div>
-                    <div class="absolute bottom-10 ml-10">
-                        <img class="w-28 h-28 rounded-full object-cover" src="${player.photo}" alt="Player Photo">
-                    </div>
-                    <div class="  absolute bottom-2 left-0 w-full text-center text-sm font-bold flex items-center justify-center">
-                        ${player.name}
-                    </div>
-                    <i class="absolute ri-delete-bin-6-line text-[#991314] mr-4 text-sm bottom-2 left-0 data-id="${player.id}"" id="deleteBtn"></i>
-                </div>
-            `;
-            deleteBtn = document.querySelectorAll('#deleteBtn');
-            deletePlayer(deleteBtn, player.id);
+                `;
+                attachDeleteEvent(player.id, selectedCard);
+            }
         });
     });
 }
 
-function deletePlayer(dele, playerId){
-    dele.forEach(Element=>{
-        Element.addEventListener('click', function(e){
+// delete function
+function attachDeleteEvent(playerId, cardElement) {
+    const deleteBtn = cardElement.querySelector('#deleteBtn');
+    if (deleteBtn) {
+        deleteBtn.addEventListener('click', (e) => {
             e.stopPropagation();
-            console.log("player idd", playerId);
-            console.log("deleteBtndeleteBtndeleteBtn : ",dele);
-            const playerCard = document.getElementById(cardId);
-        if (playerCard) {
-        playerCard.innerHTML = ''; 
-        playerCard.classList.add('card');
-          }
-        })
-    })
+            console.log("Deleting Player ID:", playerId);
+            cardElement.innerHTML = ''; 
+            cardElement.classList.add('card');
+        });
+    }
 }
 
 // Fetch players from localStorage and display them
@@ -154,4 +145,3 @@ if (storedPlayers.length > 0) {
 } else {
     console.warn('No players found in localStorage.');
 }
-

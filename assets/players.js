@@ -48,10 +48,15 @@ function generatePlayerCard(player) {
             <p>${player.position === 'GK' ? 'POS' : 'PHY'}</p>
             <p>${player.position === 'GK' ? player.positioning : player.physical}</p>
           </div>
+        
         </div>
+        
       </div>
+      <div class="flex justify-center text-center">
+            <i class="ri-delete-bin-6-line text-[#991314] text-base cursor-pointer mt-5 mt[-20px]" id="deleteBtn" data-id="${player.id}"></i>
+          </div>
     </div>
-    <i class="absolute ri-delete-bin-6-line text-[#991314] mr-4 text-sm bottom-2 left-0 data-id="${player.id}"" id="deleteBtn"></i>
+    
   `;
 }
 
