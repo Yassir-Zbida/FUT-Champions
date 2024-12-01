@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FUT Champions - Create Your Dream Lineup</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.2.0/remixicon.css">
-    <link rel="icon" type="image/x-icon" href="./assets/images/favicon.svg">
+    <link rel="icon" type="image/x-icon" href="../assets/images/favicon.svg">
     <link rel="stylesheet" href="../assets/style.css">
     <script src="../assets/players.js" defer></script>
     <script src="https://cdn.tailwindcss.com"></script>
@@ -53,10 +53,10 @@
     <!-- Hero Main Section -->
     <div class="min-h-screen h-full w-full bg-black pt-16 flex justify-between flex-col ">
         <!-- Options Header Section  -->
-        <div class="flex justify-between items-center px-6 mb-8 mx-5">
-            <div class="flex items-center gap-4">
+        <div class="flex justify-between items-center flex-col md:px-12 md:flex-row px-6 mb-8 md:mx-5 w-full">
+            <div class="flex items-center flex-col md:flex-row gap-4 w-full">
                 <button
-                    class="bg-[#991314] px-4 py-2 rounded-lg hover:bg-[#fcf7db] hover:text-[#991314] duration-75 text-[#fcf7db] font-medium"
+                    class="bg-[#991314] px-4 py-2 w-full md:w-52 rounded-lg hover:bg-[#fcf7db] hover:text-[#991314] duration-75 text-[#fcf7db] font-medium"
                     id="AddPlayer">Add New Player</button>
                 <!-- Search Input -->
                 <div class="relative w-64">
@@ -67,9 +67,9 @@
                 </div>
             </div>
             <!-- Select Option  -->
-            <div class="relative w-48">
+            <div class="relative md:w-48 w-full mt-5 md:mr-5">
                 <select id="positionFilter"
-                    class="border border-gray-500 rounded-lg pl-4 pr-10 py-2 w-full bg-black text-white focus:outline-none focus:ring-2 focus:ring-[#991314] appearance-none">
+                    class="border border-gray-500 rounded-lg md:pl-4 md:pr-10 py-2 w-full bg-black text-white focus:outline-none focus:ring-2 focus:ring-[#991314] appearance-none">
                     <option value="all">All Positions</option>
                     <option value="CF">Striker</option>
                     <option value="RWF">Right Wing</option>
@@ -88,12 +88,12 @@
         </div>
 
         <!-- Grid Container -->
-        <div class="min-h-screen grid h-4/5 grid-cols-6 gap-4 mb-32 bg-contain ml-6 bg-no-repeat" id="playersGrid">
+        <div class="min-h-screen grid h-4/5 grid-cols-1 md:grid-cols-6  md:gap-4 md:mb-32 bg-contain ml-14 bg-no-repeat" id="playersGrid">
         </div>
     </div>
     <!-- Add Modal  -->
     <div id="AddPlayerModal"
-        class="fixed inset-0 bg-gray-800 bg-opacity-50 flex items-center justify-center hidden z-50">
+        class="fixed inset-0 bg-gray-800 bg-opacity-50 flex items-center justify-center  flex-col flex-wrap md:flex-row hidden z-50">
         <div class="bg-[#410000] text-[#fcf7db] p-8 rounded-lg max-w-4xl w-full">
             <div class="flex justify-between items-center mb-4">
                 <h2 id="modalTitle" class="text-2xl font-bold">Add New Player</h2>
@@ -102,7 +102,7 @@
 
             <div id="modalContent" class="w-full">
                 <!-- Form for Player Info -->
-                <form id="playerForm" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <form id="playerForm" class="grid grid-cols md:grid-cols-2 gap-6">
                     <!-- Position -->
                     <div class="space-y-2">
                         <label for="position" class="block text-sm">Position</label>

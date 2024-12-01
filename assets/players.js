@@ -1,3 +1,25 @@
+const menuToggle = document.getElementById('menuToggle');
+const sidebar = document.getElementById('sidebar');
+const closeSidebar = document.getElementById('closeSidebar');
+
+if (menuToggle && sidebar && closeSidebar) {
+    menuToggle.addEventListener('click', () => {
+        sidebar.classList.toggle('hidden');
+    });
+
+    closeSidebar.addEventListener('click', () => {
+        sidebar.classList.add('hidden');
+    });
+
+    document.addEventListener('click', (event) => {
+        if (!sidebar.contains(event.target) && !menuToggle.contains(event.target)) {
+            sidebar.classList.add('hidden');
+        }
+    });
+} else {
+    console.warn('Sidebar menu elements are missing in the DOM.');
+}
+
 // Function to generate player HTML
 function generatePlayerCard(player) {
   return `
@@ -52,9 +74,6 @@ function generatePlayerCard(player) {
         </div>
         
       </div>
-      <div class="flex justify-center text-center">
-            <i class="ri-delete-bin-6-line text-[#991314] text-base cursor-pointer mt-5 mt[-20px]" id="deleteBtn" data-id="${player.id}"></i>
-          </div>
     </div>
     
   `;
