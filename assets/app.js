@@ -19,18 +19,21 @@ if (menuToggle && sidebar && closeSidebar) {
     });
 }
 
-// Fetch JSON file and store players in localStorage
+
 fetch('https://fut.codia-dev.com/data.json')
     .then((response) => response.json())
     .then((data) => {
         if (data.players) {
-            localStorage.setItem('players', JSON.stringify(data.players));
-            showPlayers(data.players); 
+            let players = JSON.parse(localStorage.getItem('players')) || [];
+            players = [...players, ...data.players];
+            localStorage.setItem('players', JSON.stringify(players));
+            showPlayers(players); 
         } else {
             console.log('Players data is missing in the JSON response.');
         }
     })
     .catch((error) => console.log('Failed to fetch players:', error));
+
 
 // Modal for adding a player to the bench
 const closeModal = document.getElementById('closeModal');
