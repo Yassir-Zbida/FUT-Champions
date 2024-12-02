@@ -17,8 +17,6 @@ if (menuToggle && sidebar && closeSidebar) {
             sidebar.classList.add('hidden');
         }
     });
-} else {
-    console.warn('Sidebar menu elements are missing in the DOM.');
 }
 
 // Fetch JSON file and store players in localStorage
@@ -27,7 +25,7 @@ fetch('https://fut.codia-dev.com/data.json')
     .then((data) => {
         if (data.players) {
             localStorage.setItem('players', JSON.stringify(data.players));
-            showPlayers(data.players); // Display all players initially
+            showPlayers(data.players); 
         } else {
             console.error('Players data is missing in the JSON response.');
         }
@@ -141,7 +139,7 @@ function attachDeleteEvent(playerId, cardElement) {
 // Fetch players from localStorage and display them
 const storedPlayers = JSON.parse(localStorage.getItem('players')) || [];
 if (storedPlayers.length > 0) {
-    showPlayers(storedPlayers); // Show all players initially
+    showPlayers(storedPlayers); 
 } else {
-    console.warn('No players found in localStorage.');
+    console.log('No players found in localStorage.');
 }

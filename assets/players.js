@@ -156,6 +156,8 @@ function addNewPlayer(event) {
   const photo = document.getElementById('photo').value.trim();
   const position = positionSelect.value;
   const rating = parseInt(document.getElementById('rating').value, 10);
+  const club = document.getElementById('club').value.trim();
+  const nationality = document.getElementById('nationality').value.trim();
 
   let stats;
 
@@ -184,8 +186,8 @@ function addNewPlayer(event) {
       photo,
       position,
       rating,
-      logo: 'https://example.com/logo-placeholder.png', 
-      flag: 'https://example.com/flag-placeholder.png',
+      club,
+      nationality,
       ...stats,
   };
 
