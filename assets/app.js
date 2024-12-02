@@ -27,10 +27,10 @@ fetch('https://fut.codia-dev.com/data.json')
             localStorage.setItem('players', JSON.stringify(data.players));
             showPlayers(data.players); 
         } else {
-            console.error('Players data is missing in the JSON response.');
+            console.log('Players data is missing in the JSON response.');
         }
     })
-    .catch((error) => console.error('Failed to fetch players:', error));
+    .catch((error) => console.log('Failed to fetch players:', error));
 
 // Modal for adding a player to the bench
 const closeModal = document.getElementById('closeModal');

@@ -17,7 +17,7 @@ if (menuToggle && sidebar && closeSidebar) {
         }
     });
 } else {
-    console.warn('Sidebar menu elements are missing in the DOM.');
+    console.log('Sidebar menu elements are missing in the DOM.');
 }
 
 // Function to generate player HTML
