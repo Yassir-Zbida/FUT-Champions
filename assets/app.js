@@ -24,10 +24,8 @@ fetch('https://fut.codia-dev.com/data.json')
     .then((response) => response.json())
     .then((data) => {
         if (data.players) {
-            let players = JSON.parse(localStorage.getItem('players')) || [];
-            players = [...players, ...data.players];
-            localStorage.setItem('players', JSON.stringify(players));
-            showPlayers(players); 
+            localStorage.setItem('players', JSON.stringify(data.players));
+            showPlayers(data.players); 
         } else {
             console.log('Players data is missing in the JSON response.');
         }
